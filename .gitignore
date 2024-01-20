@@ -1,0 +1,35 @@
+# compiled output
+shipping-*/dist
+shipping-*//node_modules
+
+# Logs
+shipping-*/logs
+shipping-*/*.log
+shipping-*/npm-debug.log*
+shipping-*/pnpm-debug.log*
+shipping-*/yarn-debug.log*
+shipping-*/yarn-error.log*
+shipping-*/lerna-debug.log*
+
+# OS
+shipping-*/.DS_Store
+
+# Tests
+shipping-*/coverage
+shipping-*/.nyc_output
+
+# IDEs and editors
+shipping-*/.idea
+shipping-*/.project
+shipping-*/.classpath
+shipping-*/.c9/
+shipping-*/*.launch
+shipping-*/.settings/
+shipping-*/*.sublime-workspace
+
+# IDE - VSCode
+shipping-*/.vscode/*
+shipping-*/!.vscode/settings.json
+shipping-*/!.vscode/tasks.json
+shipping-*/!.vscode/launch.json
+shipping-*/!.vscode/extensions.json
