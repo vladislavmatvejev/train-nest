@@ -1,12 +1,14 @@
-version: '3'
+version: '3.9'
 
 services:
   postgres:
-    image: postgres:latest
+    image: postgres
+    container_name: postgres
+    restart: always
     environment:
-      POSTGRES_DB: your_database_name
-      POSTGRES_USER: your_username
-      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: shipping_db
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_pass
     ports:
       - "5432:5432"
 
@@ -18,5 +20,3 @@ services:
       - postgres
     ports:
       - "3000:3000"
-    environment:
-      DATABASE_URL: postgres://your_username:your_password@postgres:5432/your_database_name
