@@ -16,7 +16,10 @@ export class ParcelService {
     return await this.parcelRepository.save(parcel);
   }
 
-  async findAll(page: number = 1, limit: number = 10): Promise<{ parcels: Parcel[]; total: number }> {
+  async findAll(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ parcels: Parcel[]; total: number }> {
     const [parcels, total] = await this.parcelRepository.findAndCount({
       skip: (page - 1) * limit,
       take: limit,
@@ -34,30 +37,31 @@ export class ParcelService {
   }
 
   // get by query = parcels?columns={"country":"Estonia","description":"Some"}
-  async findByColumns(columns: { [key: string]: any }, page: number = 1, limit: number = 10): Promise<{ parcels: Parcel[]; total: number }> {
-    const findObj = {};
-    Object.entries(columns)
-      .filter(([key, value]) => {
-        const columnOperator = filterByColumns[key]?.operator;
-
-        if (columnOperator) {
-          const isLike = columnOperator === 'LIKE';
-          const paramValue = columnOperator === 'LIKE' ? `%${value}%` : value;
-          
-          findObj[key] = isLike ? Like(paramValue) : paramValue;
-          return findObj;
-        }
-
-        return false;
-      });
-
-    const [parcels, total] = await this.parcelRepository.findAndCount({
-      where: [findObj],
+  async findByColumns(
+    columns: { [key: string]: any },
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ parcels: Parcel[]; total: number }> {
+    const findObj = {
       skip: (page - 1) * limit,
       take: limit,
+    };
+    Object.entries(columns).filter(([key, value]) => {
+      const columnOperator = filterByColumns[key]?.operator;
+
+      if (columnOperator) {
+        const isLike = columnOperator === 'LIKE';
+        const paramValue = columnOperator === 'LIKE' ? `%${value}%` : value;
+
+        findObj['where'][key] = isLike ? Like(paramValue) : paramValue;
+        return findObj;
+      }
+
+      return false;
     });
+
+    const [parcels, total] = await this.parcelRepository.findAndCount(findObj);
 
     return { parcels, total };
   }
-
 }

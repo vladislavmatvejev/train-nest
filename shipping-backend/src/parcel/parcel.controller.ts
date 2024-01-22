@@ -13,6 +13,7 @@ import {
 import { ParcelService } from './parcel.service';
 import { Parcel } from './parcel.entity';
 import { CreateParcelDto } from './dto/create-parcel.dto';
+import { parseJson } from '../common/utils';
 
 @Controller('parcels')
 export class ParcelController {
@@ -33,9 +34,20 @@ export class ParcelController {
     let result;
 
     if (columns) {
-      const columnObject = JSON.parse(columns);
-      
-      result = await this.parcelService.findByColumns(columnObject, page, limit);
+      let columnObject;
+      const columnParsed = parseJson(columns);
+
+      if (columnParsed.error) {
+        columnObject = {};
+      } else {
+        columnObject = columnParsed.data;
+      }
+
+      result = await this.parcelService.findByColumns(
+        columnObject,
+        page,
+        limit,
+      );
     } else {
       result = await this.parcelService.findAll(page, limit);
     }
@@ -44,16 +56,12 @@ export class ParcelController {
   }
 
   @Get('/:id')
-  async findById(
-    @Param('id') id: number,
-  ) {
+  async findById(@Param('id') id: number) {
     return await this.parcelService.findById(id);
   }
 
   @Get('/:sku')
-  async findBySku(
-    @Param('sku') sku: string,
-  ): Promise<Parcel> {
+  async findBySku(@Param('sku') sku: string): Promise<Parcel> {
     return await this.parcelService.findBySku(sku);
   }
 }
