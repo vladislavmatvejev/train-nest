@@ -20,6 +20,6 @@ export class Parcel {
   @Column()
   country: string;
 
-  @Column({ name: 'delivery_date' })
+  @Column({ name: 'delivery_date', type: 'timestamp' })
   deliveryDate: Date;
 }

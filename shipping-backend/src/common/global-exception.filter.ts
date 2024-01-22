@@ -1,4 +1,9 @@
-import { ExceptionFilter, Catch, ArgumentsHost, HttpStatus } from '@nestjs/common';
+import {
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpStatus,
+} from '@nestjs/common';
 import { Request, Response } from 'express';
 import { QueryFailedError } from 'typeorm';
 
@@ -15,7 +20,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     if (exception instanceof QueryFailedError) {
       const errorMessage = exception.message || '';
 
-      if (errorMessage.includes('duplicate key value violates unique constraint')) {
+      if (
+        errorMessage.includes('duplicate key value violates unique constraint')
+      ) {
         status = HttpStatus.CONFLICT;
         message = 'Conflict - Unique constraint violation';
       }
