@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('parcels')
+@Entity('parcel')
 export class Parcel {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ unique: true })
@@ -11,7 +11,7 @@ export class Parcel {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ name: 'street_address' })
   streetAddress: string;
 
   @Column()
@@ -20,6 +20,6 @@ export class Parcel {
   @Column()
   country: string;
 
-  @Column()
+  @Column({ name: 'delivery_date' })
   deliveryDate: Date;
 }
