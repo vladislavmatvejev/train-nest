@@ -1,0 +1,45 @@
+<app-header
+  (filterByCountry)="filterByCountry($event)"
+  (filterByDescription)="filterByDescription($event)"
+></app-header>
+
+<app-create-parcel [parcelColumns]="parcelColumns" (addParcel)="addParcel($event)"></app-create-parcel>
+
+<mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="sku">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>SKU</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.sku }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="streetAddress">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Street Address</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.streetAddress }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="town">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Town</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.town }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="country">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.country }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="deliveryDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Date</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.deliveryDate | date }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: tableColumns;"></mat-row>
+</mat-table>
+
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25]" [pageSize]="5" [length]="totalParcels" showFirstLastButtons (page)="onPageChange($event)"></mat-paginator>

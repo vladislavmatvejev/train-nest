@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()" #parcelForm="ngForm">
+    <div *ngFor="let field of parcelColumns | keyvalue">
+      <label for="{{ field.key }}">{{ field.key | titlecase }}:</label>
+      <input [type]="field.value.type" [id]="field.key" [name]="field.key" [(ngModel)]="parcel[field.key]" required>
+  
+      <!-- Validation Error Message -->
+      <div *ngIf="parcelForm.controls[field.key]?.invalid && (parcelForm.controls[field.key]?.dirty || parcelForm.controls[field.key]?.touched)">
+        <div *ngIf="parcelForm.controls[field.key]?.errors?.required">{{ field.key | titlecase }} is required.</div>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="parcelForm.invalid">Create Parcel</button>
+  </form>
