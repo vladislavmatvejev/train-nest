@@ -1,0 +1,17 @@
+<div class="header-container">
+    <label for="countryFilter">Filter by Country:</label>
+    <select id="countryFilter" [(ngModel)]="selectedCountry" (change)="applyCountryFilter()">
+      <option value="">All</option>
+      <option *ngFor="let country of countryList" [value]="country">{{ country }}</option>
+    </select>
+  
+    <label for="descriptionFilter">Filter by Description:</label>
+    <input
+      id="descriptionFilter"
+      type="text"
+      [(ngModel)]="descriptionFilter"
+      (input)="applyDescriptionFilter()"
+      placeholder="Enter description"
+    />
+</div>
+  

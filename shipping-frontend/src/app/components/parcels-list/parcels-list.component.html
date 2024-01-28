@@ -1,0 +1,24 @@
+<div class="list row">
+    <div class="col-md-6">
+      <h4>Parcels List</h4>
+      <ul class="list-group">
+        @for (parcel of parcels; track parcel.id; let i = $index) {
+        <li
+          class="list-group-item"
+          [class.active]="i == currentIndex"
+          (click)="setActiveParcel(parcel, i)"
+        >
+          {{ parcel.sku }}
+        </li>
+        }
+      </ul>
+    </div>
+    <mat-paginator [length]="parcels.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+    </mat-paginator>
+    <!-- <div class="col-md-6">
+      <app-parcel-details
+        [viewMode]="true"
+        [currentParcel]="currentParcel"
+      ></app-parcel-details>
+    </div> -->
+</div>
