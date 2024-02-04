@@ -4,7 +4,9 @@ import { Parcel } from './models/parcel.model';
 import { Event } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 import { ParcelColumns } from './common/types';
+import { ModalComponent } from './components/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +29,10 @@ export class AppComponent {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
-  constructor(private parcelService: ParcelService) {
+  constructor(
+    private parcelService: ParcelService,
+    private dialog: MatDialog,
+  ) {
     this.dataSource = new MatTableDataSource<Parcel>([]);
     this.loadParcels(1, 5);
   }
@@ -42,6 +47,11 @@ export class AppComponent {
       }
     );
   }
+
+  openParcelFormModal() {
+    this.openModal(false, {});
+  }
+  openParcelDetailModal() {}
 
   addParcel(parcel: any) {
     this.parcelService.create(parcel);
@@ -64,5 +74,22 @@ export class AppComponent {
 
   filterByDescription(description: string) {
     // Implement filtering logic by description
+  }
+
+  private openModal(isDetailView: boolean, parcel: Parcel) {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '500px',
+      data: {
+        parcel,
+        isDetailView,
+        parcelColumns: this.parcelColumns,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: Parcel) => {
+      if (result) {
+        console.log('result', result);
+      }
+    })
   }
 }

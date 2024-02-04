@@ -2,8 +2,8 @@
   (filterByCountry)="filterByCountry($event)"
   (filterByDescription)="filterByDescription($event)"
 ></app-header>
-
-<app-create-parcel [parcelColumns]="parcelColumns" (addParcel)="addParcel($event)"></app-create-parcel>
+<button (click)="openParcelFormModal()">Add Parcel</button>
+<!-- <app-create-parcel [parcelColumns]="parcelColumns" (addParcel)="addParcel($event)"></app-create-parcel> -->
 
 <mat-table [dataSource]="dataSource" matSort>
 

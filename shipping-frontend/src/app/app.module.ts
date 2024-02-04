@@ -11,14 +11,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateParcelComponent,
     ParcelDetailsComponent,
     ParcelsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent,
+    CreateParcelComponent
   ],
   imports: [
     BrowserModule,
