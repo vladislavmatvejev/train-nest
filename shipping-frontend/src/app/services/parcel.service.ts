@@ -23,7 +23,7 @@ export class ParcelService {
   constructor(private http: HttpClient) { }
 
   getParcels(page: number, pageSize: number): Observable<PaginatedResponse> {
-    const params = new HttpParams().set('page', page).set('pageSize', pageSize);
+    const params = new HttpParams().set('page', page).set('limit', pageSize);
     return this.http.get<PaginatedResponse>(baseUrl, { params });
   }
 
@@ -36,7 +36,7 @@ export class ParcelService {
   }
 
   create(parcel: Parcel): Observable<any> {
-    return this.http.post(baseUrl, parcel);
+    return this.http.post(baseUrl, {parcel});
   }
 
   findByColumns(term: ColumnsTerm): Observable<PaginatedResponse> {
