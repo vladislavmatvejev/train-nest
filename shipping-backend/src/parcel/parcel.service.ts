@@ -46,7 +46,7 @@ export class ParcelService {
       skip: (page - 1) * limit,
       take: limit,
     };
-    Object.entries(columns).filter(([key, value]) => {
+    Object.entries(columns).forEach(([key, value]) => {
       const columnOperator = filterByColumns[key]?.operator;
 
       if (columnOperator) {
