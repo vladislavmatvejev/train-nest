@@ -22,7 +22,6 @@ export class ParcelController {
   @Post()
   @UsePipes(new ValidationPipe())
   async create(@Body('parcel') parcel: CreateParcelDto): Promise<Parcel> {
-    console.log('check', parcel);
     return await this.parcelService.create(parcel);
   }
 
