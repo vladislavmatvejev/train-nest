@@ -19,8 +19,8 @@ import { parseJson } from '../common/utils';
 export class ParcelController {
   constructor(private readonly parcelService: ParcelService) {}
 
-  @UsePipes(new ValidationPipe())
   @Post()
+  @UsePipes(new ValidationPipe())
   async create(@Body('parcel') parcel: CreateParcelDto): Promise<Parcel> {
     return await this.parcelService.create(parcel);
   }

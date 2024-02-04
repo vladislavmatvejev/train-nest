@@ -3,6 +3,9 @@ import {
   Catch,
   ArgumentsHost,
   HttpStatus,
+  HttpException,
+  HttpExceptionBodyMessage,
+  HttpExceptionBody
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { QueryFailedError } from 'typeorm';
@@ -14,8 +17,10 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
+    // console.log('response', exception);
+
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message = 'Internal Server Error';
+    let message: HttpExceptionBodyMessage = 'Internal Server Error';
 
     if (exception instanceof QueryFailedError) {
       const errorMessage = exception.message || '';
@@ -26,6 +31,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         status = HttpStatus.CONFLICT;
         message = 'Conflict - Unique constraint violation';
       }
+    }
+
+    if (exception instanceof HttpException) {
+      const response = exception.getResponse() as HttpExceptionBody;
+      status = response.statusCode;
+      message = response.message;
     }
 
     response.status(status).json({
