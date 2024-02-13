@@ -16,7 +16,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    environment:
+      POSTGRES_DB: shipping_db
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_pass
     depends_on:
       - postgres
     ports:
       - "3000:3000"
+  
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.frontend
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - "4201:4200"

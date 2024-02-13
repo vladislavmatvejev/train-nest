@@ -1,15 +1,16 @@
-<h1>{{ isDetailView ? 'View Parcel Details' : 'Create Parcel' }}</h1>
+<div class="modal-content">
+    <h1>{{ isDetailView ? 'View Parcel Details' : 'Create Parcel' }}</h1>
 
-<app-create-parcel
-  *ngIf="!isDetailView"
-  [parcelColumns]="modalData.parcelColumns"
-  [parcel]="modalData.parcel"
-  (addParcel)="onSubmit()"
-></app-create-parcel>
+    <app-create-parcel
+    *ngIf="!isDetailView"
+    [parcelColumns]="modalData.parcelColumns"
+    [parcel]="modalData.parcel"
+    [close]="cancel()"
+    (addParcel)="onSubmit()"
+    ></app-create-parcel>
 
-<div *ngIf="isDetailView">
-  <!-- Display parcel details here -->
-  <p>{{ modalData.parcel }}</p>
+    <div *ngIf="isDetailView">
+    <!-- Display parcel details here -->
+    <p>{{ modalData.parcel }}</p>
+    </div>
 </div>
-
-<button (click)="cancel()">Cancel</button>
