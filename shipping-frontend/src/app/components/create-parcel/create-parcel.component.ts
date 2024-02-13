@@ -11,6 +11,7 @@ import { ParcelService } from '../../services/parcel.service';
   styleUrl: './create-parcel.component.css',
 })
 export class CreateParcelComponent implements OnInit{
+  @Input() close: any;
   @Input() parcelColumns: ParcelColumns = {};
   @Input() parcel: any = {
     sku: '',
@@ -26,6 +27,11 @@ export class CreateParcelComponent implements OnInit{
   ngOnInit() {
     console.log('check123', this.parcelColumns);
     console.log('parcel', this.parcel);
+  }
+
+  cancel() {
+    console.log(123);
+    this.close();
   }
 
   onSubmit(formData: NgForm) {

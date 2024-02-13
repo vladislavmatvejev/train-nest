@@ -1,41 +1,54 @@
 h1 {
     color: #333;
-  }
+}
   
-  form {
+form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 0 20px;
-  }
+}
   
-  label {
+label {
     font-weight: bold;
-  }
+}
   
-  input {
+input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
+}
   
-  button {
+button {
     padding: 10px;
+    margin: 10px 0;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+    width: 105px;
+}
   
-  button:hover {
+button:hover {
     background-color: #0056b3;
-  }
+}
 
-  .form-invalid {
+.cancel-btn {
+    margin-left: 20px;
+    background-color: transparent;
+    color: black;
+}
+
+.cancel-btn:hover {
+    background-color: #e6a7a3;
+    color: black;
+}
+
+.form-invalid {
     color: red;
-  }
+}
   
   

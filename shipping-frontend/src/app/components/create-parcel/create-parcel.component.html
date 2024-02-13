@@ -10,5 +10,8 @@
       </div>
     </div>
   
-    <button type="submit" [disabled]="parcelForm.invalid">Create Parcel</button>
+    <div class="btn-sec">
+        <button mat-raised-button type="submit" color="primary" class="save-btn" (click)="onSubmit(parcelForm)">Save</button>
+        <button mat-raised-button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
   </form>
