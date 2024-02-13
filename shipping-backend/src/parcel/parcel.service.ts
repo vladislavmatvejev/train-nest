@@ -45,6 +45,7 @@ export class ParcelService {
     const findObj = {
       skip: (page - 1) * limit,
       take: limit,
+      where: {},
     };
     Object.entries(columns).forEach(([key, value]) => {
       const columnOperator = filterByColumns[key]?.operator;
@@ -52,8 +53,9 @@ export class ParcelService {
       if (columnOperator) {
         const isLike = columnOperator === 'LIKE';
         const paramValue = columnOperator === 'LIKE' ? `%${value}%` : value;
-
+    
         findObj['where'][key] = isLike ? Like(paramValue) : paramValue;
+
         return findObj;
       }
 

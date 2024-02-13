@@ -60,7 +60,7 @@ export class ParcelController {
     return await this.parcelService.findById(id);
   }
 
-  @Get('/:sku')
+  @Get('sku/:sku')
   async findBySku(@Param('sku') sku: string): Promise<Parcel> {
     return await this.parcelService.findBySku(sku);
   }

@@ -25,11 +25,11 @@ services:
     ports:
       - "3000:3000"
   
-  # frontend:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.frontend
-  #   depends_on:
-  #     - backend
-  #   ports:
-  #     - "4201:4200"
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
