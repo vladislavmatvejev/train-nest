@@ -5,7 +5,7 @@ import {
   HttpStatus,
   HttpException,
   HttpExceptionBodyMessage,
-  HttpExceptionBody
+  HttpExceptionBody,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { QueryFailedError } from 'typeorm';
