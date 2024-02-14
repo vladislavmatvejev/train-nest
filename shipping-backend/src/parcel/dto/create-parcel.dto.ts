@@ -4,7 +4,7 @@ export class CreateParcelDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
-  @MaxLength(8)
+  @MaxLength(12)
   sku: string;
 
   @IsString()

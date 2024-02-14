@@ -18,7 +18,7 @@ export class ParcelService {
 
   async findAll(
     page: number = 1,
-    limit: number = 10,
+    limit: number = 0,
   ): Promise<{ parcels: Parcel[]; total: number }> {
     const [parcels, total] = await this.parcelRepository.findAndCount({
       skip: (page - 1) * limit,
@@ -40,7 +40,7 @@ export class ParcelService {
   async findByColumns(
     columns: { [key: string]: any },
     page: number = 1,
-    limit: number = 10,
+    limit: number = 0,
   ): Promise<{ parcels: Parcel[]; total: number }> {
     const findObj = {
       skip: (page - 1) * limit,

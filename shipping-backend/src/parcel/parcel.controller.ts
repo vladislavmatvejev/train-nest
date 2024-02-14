@@ -28,7 +28,7 @@ export class ParcelController {
   @Get()
   async findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query('limit', new DefaultValuePipe(0), ParseIntPipe) limit: number,
     @Query('columns') columns?: string,
   ): Promise<{ parcels: Parcel[]; total: number }> {
     let result;
